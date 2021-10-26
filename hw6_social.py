@@ -98,6 +98,7 @@ def getRegionFromState(stateDf, state):
     row = stateDf.loc[stateDf['state']==state,'region'] 
     #print(state)
     #print(stateDf)
+    # print("=========================================================================")
     #print(row)
     return (row.values[0])
 
@@ -108,7 +109,7 @@ addColumns(data, stateDf)
 #7 [Check6-1]
 Parameters: dataframe ; dataframe
 Returns: None
-'''
+# '''
 def addColumns(data, stateDf):
     names=[]
     positions=[]
@@ -146,7 +147,13 @@ Returns: str
 '''
 def findSentiment(classifier, message):
     score = classifier.polarity_scores(message)['compound']
-    return
+    if score<-0.1:
+        return "negative"
+    elif score>0.1:
+        return "positive"
+    else:
+        return "neutral"
+    #return
 
 
 '''
@@ -319,12 +326,13 @@ if __name__ == "__main__":
     # test.testParseState()
     #test.testFindHashtags()
     #test.testGetRegionFromState()
-    test.testAddColumns()
+    #test.testAddColumns()
     ## Uncomment these for Week 2 ##
     """print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
     test.week2Tests()
     print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     test.runWeek2()"""
+    test.testFindSentiment()
 
     ## Uncomment these for Week 3 ##
     """print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
