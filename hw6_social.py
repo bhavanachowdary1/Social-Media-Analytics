@@ -26,7 +26,7 @@ Parameters: str
 Returns: dataframe
 '''
 def makeDataFrame(filename):
-    return
+    return pd.read_csv(filename)
 
 
 '''
@@ -85,7 +85,7 @@ Parameters: str
 Returns: list of strs
 '''
 def findHashtags(message):
-    return re.findall("#\w+", message)
+    return re.findall("#\w+", message) #re.findall("#\w*")
 
 
 '''
@@ -94,8 +94,12 @@ getRegionFromState(stateDf, state)
 Parameters: dataframe ; str
 Returns: str
 '''
-def getRegionFromState(stateDf, state):
-    return
+def getRegionFromState(stateDf, state): 
+    row = stateDf.loc[stateDf['state'] == state,'region'] 
+    #print(state)
+    #print(row)
+    return (row.values[0])
+    
 
 
 '''
@@ -289,7 +293,8 @@ if __name__ == "__main__":
     # test.testParseName()
     # test.testParsePosition()
     # test.testParseState()
-    test.testFindHashtags()
+    #test.testFindHashtags()
+    test.testGetRegionFromState()
     ## Uncomment these for Week 2 ##
     """print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
     test.week2Tests()
