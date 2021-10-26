@@ -95,11 +95,12 @@ Parameters: dataframe ; str
 Returns: str
 '''
 def getRegionFromState(stateDf, state): 
-    row = stateDf.loc[stateDf['state'] == state,'region'] 
+    row = stateDf.loc[stateDf['state']==state,'region'] 
     #print(state)
+    #print(stateDf)
     #print(row)
     return (row.values[0])
-    
+
 
 
 '''
@@ -109,7 +110,30 @@ Parameters: dataframe ; dataframe
 Returns: None
 '''
 def addColumns(data, stateDf):
-    return
+    names=[]
+    positions=[]
+    states=[]
+    regions=[]
+    hashtags=[]
+    for index,row in data.iterrows():
+        labelvalue=data["label"].loc[index]
+        name=parseName(labelvalue)
+        position=parsePosition(labelvalue)
+        state=parseState(labelvalue)
+        region=getRegionFromState(stateDf,state)
+        txtvalue=data["text"].loc[index]
+        hashtag=findHashtags(txtvalue)
+        names.append(name)
+        positions.append(position)
+        states.append(state)
+        regions.append(region)
+        hashtags.append(hashtag)
+    data["name"]=names
+    data["position"]=positions
+    data["state"]=states
+    data["region"]=regions
+    data["hashtags"]=hashtags
+    return None
 
 
 ### PART 2 ###
@@ -294,7 +318,8 @@ if __name__ == "__main__":
     # test.testParsePosition()
     # test.testParseState()
     #test.testFindHashtags()
-    test.testGetRegionFromState()
+    #test.testGetRegionFromState()
+    test.testAddColumns()
     ## Uncomment these for Week 2 ##
     """print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
     test.week2Tests()
