@@ -211,9 +211,18 @@ Parameters: dataframe ; str
 Returns: dict mapping strs to (dicts mapping strs to ints)
 '''
 def getDataForRegion(data, colName):
-    
-
-    return
+    region_count={}
+    for index,row in data.iterrows():
+        region=row["region"]
+        if region not in region_count:
+            region_count[region] = {}
+        if  region  in region_count:
+            att=row[colName]
+            if att not in region_count[region]:
+                region_count[region][att] = 0
+            region_count[region][att] += 1
+    #print("rr",region_count)
+    return region_count
 
 
 '''
@@ -353,7 +362,7 @@ if __name__ == "__main__":
     # test.testParseName()
     # test.testParsePosition()
     # test.testParseState()
-    test.testFindHashtags()
+    #test.testFindHashtags()
     #test.testGetRegionFromState()
     #test.testAddColumns()
     ## Uncomment these for Week 2 ##
@@ -363,14 +372,14 @@ if __name__ == "__main__":
     addColumns(df, stateDf)
     addSentimentColumn(df)
     
-    test.testGetDataCountByState(df)
+    #test.testGetDataCountByState(df)
     """print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
     test.week2Tests()
     print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     test.runWeek2()"""
     #test.testFindSentiment()
     #test.testAddSentimentColumn()
-
+    test.testGetDataForRegion(df)
     ## Uncomment these for Week 3 ##
     """print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
     test.runWeek3()"""
