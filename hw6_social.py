@@ -267,7 +267,7 @@ def mostCommonHashtags(hashtags, count):
     return hashtagssorted
 
 
-    return
+ 
 
 
 '''
@@ -277,6 +277,7 @@ Parameters: dataframe ; str
 Returns: float
 '''
 def getHashtagSentiment(data, hashtag):
+    
     return
 
 
