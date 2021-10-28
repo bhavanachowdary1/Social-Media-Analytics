@@ -85,7 +85,18 @@ Parameters: str
 Returns: list of strs
 '''
 def findHashtags(message):
-    return re.findall("#\w+", message) #re.findall("#\w*")
+    list=[] 
+    mes=message.split("#") 
+    for x in mes[1:len(mes)]: 
+        string="" 
+        for y in x: 
+            if y not in endChars: 
+                string+=y 
+            else: 
+                break 
+        string="#"+string 
+        list.append(string) 
+    return list
 
 
 '''
@@ -200,6 +211,8 @@ Parameters: dataframe ; str
 Returns: dict mapping strs to (dicts mapping strs to ints)
 '''
 def getDataForRegion(data, colName):
+    
+
     return
 
 
@@ -340,7 +353,7 @@ if __name__ == "__main__":
     # test.testParseName()
     # test.testParsePosition()
     # test.testParseState()
-    #test.testFindHashtags()
+    test.testFindHashtags()
     #test.testGetRegionFromState()
     #test.testAddColumns()
     ## Uncomment these for Week 2 ##
@@ -349,6 +362,7 @@ if __name__ == "__main__":
     stateDf = makeDataFrame("data/statemappings.csv")
     addColumns(df, stateDf)
     addSentimentColumn(df)
+    
     test.testGetDataCountByState(df)
     """print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
     test.week2Tests()
