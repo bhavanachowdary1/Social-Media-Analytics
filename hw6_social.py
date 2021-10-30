@@ -245,7 +245,7 @@ def getHashtagRates(data):
 
 
 
-    return
+   
 
 
 '''
@@ -255,6 +255,18 @@ Parameters: dict mapping strs to ints ; int
 Returns: dict mapping strs to ints
 '''
 def mostCommonHashtags(hashtags, count):
+    hashtagssorted={}
+    Totalcount=0
+    hashtags_sorted_dict = sorted(hashtags, key=hashtags.get, reverse=True)
+    for r in hashtags_sorted_dict:
+        if Totalcount<count:
+            hashtagssorted[r]= hashtags[r]
+            Totalcount=Totalcount+1
+    # print(Totalcount)
+    # print(hashtagssorted)
+    return hashtagssorted
+
+
     return
 
 
@@ -392,8 +404,9 @@ if __name__ == "__main__":
     test.runWeek2()"""
     #test.testFindSentiment()
     #test.testAddSentimentColumn()
-    test.testGetHashtagRates(df)
+    #test.testGetHashtagRates(df)
     #test.testGetDataForRegion(df)
+    test.testMostCommonHashtags(df)
     ## Uncomment these for Week 3 ##
     """print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
     test.runWeek3()"""
