@@ -302,6 +302,17 @@ Returns: None
 '''
 def graphStateCounts(stateCounts, title):
     import matplotlib.pyplot as plt
+    xlist=[i for i in stateCounts]
+    w=0.8
+    ylist=[stateCounts[i] for i in stateCounts]
+    for index in range(len(ylist)):
+        plt.bar(xlist[index],ylist[index],width=w)
+    plt.xticks(ticks=list(range(len(xlist))),label=xlist,rotation="vertical")
+    plt.title("StateCount")
+    plt.xlabel("State")
+    plt.ylabel("Count")
+ 
+    plt.show()
     return
 
 
@@ -402,7 +413,7 @@ if __name__ == "__main__":
     #test.testFindHashtags()
     #test.testGetRegionFromState()
     #test.testAddColumns()
-    
+
     ## Uncomment these for Week 2 ##
 
     df = makeDataFrame("data/politicaldata.csv")
@@ -420,7 +431,7 @@ if __name__ == "__main__":
     #test.testGetHashtagRates(df)
     #test.testGetDataForRegion(df)
     #test.testMostCommonHashtags(df)
-    test.testGetHashtagSentiment(df)
+    #test.testGetHashtagSentiment(df)
     ## Uncomment these for Week 3 ##
-    """print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek3()"""
+    print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
+    test.runWeek3()
